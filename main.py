@@ -1,4 +1,5 @@
 import os
+import sys
 
 def quit_program():
     print("force program to quit")
@@ -10,7 +11,10 @@ def custom_print(value):
     print(value)
 
 def clear_screen():
-   os.system('cls' if os.name == 'nt' else 'clear')
+    if 'idlelib.run' in sys.modules:
+        print("\n"*49)
+    else:
+       os.system('cls' if os.name == 'nt' else 'clear')
 
 clear_screen()
 
@@ -19,7 +23,6 @@ Value is the value to check, value_type is "Menu", "Number", "Yes/No", or "Text"
 '''
 def validate_value(value, value_type, size=None):
     try:
-        print(badasjkl)
         if value == "":
             return "Must have a value!"
         #checking if response is quit or cancel
@@ -32,8 +35,8 @@ def validate_value(value, value_type, size=None):
                 return "Value is not a (whole) number!"
             elif int(value) < 1:
                 return "Value is less than 1!"
-            elif value > size:
-                return f"Value is higher than {size}"
+            elif int(value) > size:
+                return f"Value is higher than {size}."
             else:
                 return None
         elif value_type == "Yes/No":
@@ -60,7 +63,7 @@ def get_input(context, prompt, value_type, size=None):
         if value_type == "Menu" or value_type == "Number":
             info_string = f"1 - {size}"
         else:
-            info_string = type
+            info_string = value_type
         user_response = input(f"> {prompt}  [{info_string}]: ")
 
         #validates input
@@ -85,6 +88,6 @@ def get_input(context, prompt, value_type, size=None):
             break
 
     return user_response
-            
+
                     
     
