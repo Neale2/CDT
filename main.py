@@ -1,7 +1,22 @@
+import os
+
+def quit_program():
+    print("force program to quit")
+
+def reset_order():
+    print("reset order")
+
+def custom_print(value):
+    print(value)
+
+def clear_screen():
+   os.system('cls' if os.name == 'nt' else 'clear')
+
+clear_screen()
+
 '''
 Value is the value to check, value_type is "Menu", "Number", "Yes/No", or "Text", size defaults to no and is max value size.
 '''
-
 def validate_value(value, value_type, size=None):
     try:
         print(badasjkl)
@@ -33,7 +48,43 @@ def validate_value(value, value_type, size=None):
         return(f"Error in program! Error message is '{e}'. Try another input.")
 
 def get_input(context, prompt, value_type, size=None):
+    #if mistake in code with wrong value type, lets me know.
     if not (value_type == "Menu" or value_type == "Text" or value_type == "Yes/No" or value_type == "Number"):
         raise ValueError("Invalid type!")
-        
-print(validate_value(1, 2, 3))
+    clear_screen()
+    custom_print(context)
+    #validation loop
+    while True:
+        custom_print('[Q] Quit    [C] Cancel')
+        #displays useful info depending on type
+        if value_type == "Menu" or value_type == "Number":
+            info_string = f"1 - {size}"
+        else:
+            info_string = type
+        user_response = input(f"> {prompt}  [{info_string}]: ")
+
+        #validates input
+        validation_response = validate_value(user_response, value_type, size)
+
+        #invalid input
+        if not validation_response == None:
+            if validation_response == "q":
+                quit_program()
+                #end program for now
+                return None
+            elif validation_response == "c":
+                reset_order()
+                #end program for noe
+                return None
+            else:
+                clear_screen()
+                custom_print(context)
+                custom_print(validation_response)
+        else:
+            #end validation cycle
+            break
+
+    return user_response
+            
+                    
+    
