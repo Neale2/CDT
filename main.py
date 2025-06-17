@@ -16,7 +16,6 @@ def clear_screen():
     else:
        os.system('cls' if os.name == 'nt' else 'clear')
 
-clear_screen()
 
 '''
 Value is the value to check, value_type is "Menu", "Number", "Yes/No", or "Text", size defaults to no and is max value size.
@@ -26,7 +25,7 @@ def validate_value(value, value_type, size=None):
         if value == "":
             return "Must have a value!"
         #checking if response is quit or cancel
-        elif value.lower() == "q" or value.lower() == "c":
+        elif value.lower() == "q" or value.lower() == "c" or value.lower() == "quit" or value.lower() == "cancel":
             return value.lower()
         #responses where only numbers are expected
         elif value_type == "Menu" or value_type == "Number":
@@ -50,6 +49,10 @@ def validate_value(value, value_type, size=None):
     except Exception as e:
         return(f"Error in program! Error message is '{e}'. Try another input.")
 
+
+'''
+Context is the large information string displayed above, prompt is the prompt to display to users, value_type is "Menu", "Number", "Yes/No", or "Text", size defaults to no and is max value size.
+'''
 def get_input(context, prompt, value_type, size=None):
     #if mistake in code with wrong value type, lets me know.
     if not (value_type == "Menu" or value_type == "Text" or value_type == "Yes/No" or value_type == "Number"):
@@ -71,13 +74,13 @@ def get_input(context, prompt, value_type, size=None):
 
         #invalid input
         if not validation_response == None:
-            if validation_response == "q":
+            if validation_response == "q" or validation_response == "quit":
                 quit_program()
                 #end program for now
                 return None
-            elif validation_response == "c":
+            elif validation_response == "c" or validation_response == "cancel":
                 reset_order()
-                #end program for noe
+                #end program for now
                 return None
             else:
                 clear_screen()
@@ -88,6 +91,7 @@ def get_input(context, prompt, value_type, size=None):
             break
 
     return user_response
+
 
                     
     
