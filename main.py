@@ -22,9 +22,9 @@ Start item is the item on the left of the dots, end_item is the item on the righ
 '''
 
 def dotter(start_item, end_item, desired_length):
-    dot_quantity = desired_length - len(start_item) - len(end_item)
+    dot_quantity = desired_length - len(str(start_item)) - len(str(end_item))
     #puts correct amount of dots between string
-    return "\n" + start_item + "."*dot_quantity + end_item
+    return "\n" + str(start_item) + "."*dot_quantity + str(end_item)
 
 
 '''
@@ -116,24 +116,19 @@ def generate_receipt(order):
     price = 0
     for pizza in order["pizzas"]:
         #adding nice dots to items
-        receipt = receipt + dotter(pizza[0], pizza[1], 31)
-        price = price + item[1]
+        receipt = receipt + dotter(pizza[0], f"${pizza[1]}", 31)
+        price = price + pizza[1]
     receipt = receipt + "\n"*3 + dotter("Subtotal", f"${price}", 31)
     #is order for delivery?
     if order["delivery"]:
         price = price + 3
-        receipt = receipt + "\n" + dotter("Delivery Fee", "$3.00", 31)
+        receipt = receipt + "\n" + dotter("Delivery Fee", "$3.0", 31)
     else:
         receipt = receipt + "\n" + dotter("Delivery Fee", "N/A", 31)
     receipt = receipt +  "\n" * 3 + dotter("TOTAL", f"${price}", 31)
-    reciept = receipt +  "\n-------------------------------\n     THANKS FOR YOUR ORDER     \n-------------------------------"
+    receipt = receipt +  "\n-------------------------------\n     THANKS FOR YOUR ORDER     \n-------------------------------"
 
-    return reciept
+    return receipt
 
         
 
-    
-    
-
-                    
-    
