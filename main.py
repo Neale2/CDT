@@ -16,6 +16,15 @@ def clear_screen():
     else:
        os.system('cls' if os.name == 'nt' else 'clear')
 
+       
+'''
+Start item is the item on the left of the dots, end_item is the item on the right of the dots, and desired length of combited string is desired_length.
+'''
+
+def dotter(start_item, end_item, desired_length):
+    dot_quantity = desired_length - len(start_item) - len(end_item)
+    return "\n" + start_item + "."*dot_quantity + end_item
+
 
 '''
 Value is the value to check, value_type is "Menu", "Number", "Yes/No", or "Text", size defaults to no and is max value size.
