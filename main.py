@@ -130,5 +130,15 @@ def generate_receipt(order):
 
     return receipt
 
-        
+
+
+def generate_menu(options):
+    menu = "|Pizza Topping|\n\n"
+    counter = 0
+    for pizza in options:
+        counter = counter + 1
+        menu = menu +  f"{counter}.  {item[0]}  - ${item[1]}\n"
+    return (menu, len(menu))
+
+
 
