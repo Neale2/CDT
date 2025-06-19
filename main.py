@@ -165,7 +165,7 @@ def generate_menu(options):
     for pizza in options:
         counter = counter + 1
         menu = menu +  f"{counter}.  {pizza[0]}  - ${pizza[1]}\n"
-    return (menu, len(menu))
+    return (menu, counter))
 
 
 '''
@@ -184,7 +184,7 @@ def main():
     order["quantity"] = int(get_input("", "Pizza Quantity", "Number", 5))
     menu_response = generate_menu(PIZZA_OPTIONS)
     order["pizzas"] = []
-    for i in range(1-order["quantity"]):
+    for i in range(1, order["quantity"]):
         #put in pizza menu and length of menu
         pizza_num = int(get_input(menu_response[0], "Select topping", "Menu", menu_response[1]))
         PIZZA_OPTIONS[pizza].append(order["pizzas"])
