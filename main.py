@@ -187,7 +187,7 @@ def main():
     for i in range(1, order["quantity"]):
         #put in pizza menu and length of menu
         pizza_num = int(get_input(menu_response[0], "Select topping", "Menu", menu_response[1]))
-        PIZZA_OPTIONS[pizza_num].append(order["pizzas"])
+        PIZZA_OPTIONS[pizza_num-1].append(order["pizzas"])
     receipt = generate_receipt(order)
     get_input(receipt, "Input Q to quit or anything else to cancel/restart", "Text")
     
