@@ -132,7 +132,7 @@ def generate_receipt(order):
     receipt = "      ===ORDER RECEIPT===      "
     receipt = receipt + f"\nCustomer Name: {order['name']}"
     #is order for delivery?
-    if order["delivery"]:
+    if order["delivery"] == "y":
         receipt = receipt + f"\nPhone: {order['phone']}\nAddress: {order['address']}\nDelivery"
     else:
         reciept = receipt + "\nPhone: N/A\nAddress: N/A\nNo Delivery"
@@ -187,7 +187,7 @@ def main():
     for i in range(1, order["quantity"]):
         #put in pizza menu and length of menu
         pizza_num = int(get_input(menu_response[0], "Select topping", "Menu", menu_response[1]))
-        PIZZA_OPTIONS[pizza_num-1].append(order["pizzas"])
+        order["pizzas"].append(PIZZA_OPTIONS[pizza_num-1])
     receipt = generate_receipt(order)
     get_input(receipt, "Input Q to quit or anything else to cancel/restart", "Text")
     
