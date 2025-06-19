@@ -2,7 +2,7 @@ import os
 import sys
 
 def quit_program():
-    exit()
+    sys.exit()
 
 def reset_order():
     print("reset order")
@@ -140,6 +140,7 @@ def generate_menu(options):
         menu = menu +  f"{counter}.  {pizza[0]}  - ${pizza[1]}\n"
     return (menu, len(menu))
 
+print(get_input("hewwo", "enter text", "Text"))
 
 
 
