@@ -1,11 +1,14 @@
 import os
 import sys
 
+class ProgramReset(Exception):
+    pass
+
 def quit_program():
     sys.exit()
 
 def reset_order():
-    print("reset order")
+    raise ProgramReset()
 
 def custom_print(value):
     print(value)
@@ -18,6 +21,7 @@ def clear_screen():
 
        
 '''
+Function to add correct number of seperation dots
 Start item is the item on the left of the dots, end_item is the item on the right of the dots, and desired length of combited string is desired_length.
 '''
 
@@ -28,6 +32,7 @@ def dotter(start_item, end_item, desired_length):
 
 
 '''
+Function to validate values
 Value is the value to check, value_type is "Menu", "Number", "Yes/No", or "Text", size defaults to no and is max value size.
 '''
 def validate_value(value, value_type, size=None):
@@ -61,6 +66,7 @@ def validate_value(value, value_type, size=None):
 
 
 '''
+Function to get user input
 Context is the large information string displayed above, prompt is the prompt to display to users, value_type is "Menu", "Number", "Yes/No", or "Text", size defaults to no and is max value size.
 '''
 def get_input(context, prompt, value_type, size=None):
@@ -102,7 +108,10 @@ def get_input(context, prompt, value_type, size=None):
 
     return user_response
 
-
+'''
+Function to generate user reciept
+Order is dictionary of all the user's orders
+'''
 def generate_receipt(order):
     #building string to display reciept
     receipt = "      ===ORDER RECEIPT===      "
@@ -131,7 +140,10 @@ def generate_receipt(order):
     return receipt
 
 
-
+'''
+Function to generate pizza menu
+options is list of tuples, with pizza name and pizza price
+'''
 def generate_menu(options):
     menu = "|Pizza Topping|\n\n"
     counter = 0
@@ -140,7 +152,19 @@ def generate_menu(options):
         menu = menu +  f"{counter}.  {pizza[0]}  - ${pizza[1]}\n"
     return (menu, len(menu))
 
-print(get_input("hewwo", "enter text", "Text"))
+
+'''
+Function is main loop function
+'''
+def main():
+    #main loop logic here - call reset_order to restart
+
+#main function - if ProgramReset raised, program is reset
+while True:
+    try:
+        main()
+    except ProgramReset:
+        print("Restarting order system!")
 
 
 
