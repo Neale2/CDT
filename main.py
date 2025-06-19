@@ -1,6 +1,21 @@
 import os
 import sys
 
+PIZZA_OPTIONS = [
+    ("Margherita", 10.5),
+    ("Hawaiian", 10.5),
+    ("Meatlovers", 10.5),
+    ("Pepperoni", 10.5),
+    ("BBQ Chicken", 10.5),
+    ("Vegetarian", 10.5),
+    ("Beef & Onion", 10.5),
+    ("Lamb & Kumara", 15.5),
+    ("Smoked Salmon & Cream Cheese", 15.5),
+    ("Blue Cheese & Pear", 15.5),
+    ("Pesto Chicken & Brie", 15.5),
+    ("Mushroom & Truffle Oil", 15.5)
+]
+
 class ProgramReset(Exception):
     pass
 
@@ -157,9 +172,26 @@ def generate_menu(options):
 Function is main loop function
 '''
 def main():
-    #main loop logic here - call reset_order to restart
-
-#main function - if ProgramReset raised, program is reset
+    order = {}
+    #saves lowercase first letter of response (i.e. "y" or "n")
+    order["delivery"] = get_input("New Order", "Is delivery required?", "Yes/No").lower()[0]
+    #formats name to be in title fomat
+    order["name"] = get_input("", "Client Name", "Text").title()
+    if order["delivery"] == "y":
+        order["address"] = get_input("", "Client Address", "Text")
+        order["phone"] = get_input("", "Client phone number", "Text")
+    #save as integer
+    order["quantity"] = int(get_input("", "Pizza Quantity", "Number", 5))
+    menu_response = generate_menu(PIZZA_OPTIONS)
+    order["pizzas"] = []
+    for i in range(1-order["quantity"]):
+        #put in pizza menu and length of menu
+        pizza_num = int(get_input(menu_response[0], "Select topping", "Menu", menu_response[1]))
+        PIZZA_OPTIONS[pizza].append(order["pizzas"])
+    receipt = generate_receipt(order)
+    get_input(receipt, "Input Q to quit or anything else to cancel/restart", "Text")
+    
+#main loop - if ProgramReset raised, program is reset
 while True:
     try:
         main()
