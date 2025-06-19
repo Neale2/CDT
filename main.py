@@ -2,20 +2,19 @@ import os
 import sys
 
 PIZZA_OPTIONS = [
-    ("Margherita", 10.5),
-    ("Hawaiian", 10.5),
-    ("Meatlovers", 10.5),
-    ("Pepperoni", 10.5),
     ("BBQ Chicken", 10.5),
-    ("Vegetarian", 10.5),
     ("Beef & Onion", 10.5),
-    ("Lamb & Kumara", 15.5),
-    ("Smoked Salmon & Cream Cheese", 15.5),
     ("Blue Cheese & Pear", 15.5),
+    ("Hawaiian", 10.5),
+    ("Lamb & Kumara", 15.5),
+    ("Margherita", 10.5),
+    ("Meatlovers", 10.5),
+    ("Mushroom & Truffle Oil", 15.5),
+    ("Pepperoni", 10.5),
     ("Pesto Chicken & Brie", 15.5),
-    ("Mushroom & Truffle Oil", 15.5)
+    ("Smoked Salmon & Cream Cheese", 15.5),
+    ("Vegetarian", 10.5)
 ]
-
 class ProgramReset(Exception):
     pass
 
