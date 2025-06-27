@@ -208,7 +208,7 @@ def main():
         #add appropriate pizza to pizzas list in order dictionary
         order["pizzas"].append(PIZZA_OPTIONS[pizza_num-1])
     receipt = generate_receipt(order, DELIVERY_PRICE)
-    get_input(receipt, "Input [Q]uit to quit or anything else to cancel/restart", "Text")
+    get_input(receipt, "Input [Q]uit to quit, [C] to cancel, or anything else to restart", "Text")
     
 #main loop - if ProgramReset raised, program is reset
 while True:
