@@ -203,8 +203,9 @@ def main():
     menu_response = generate_menu(PIZZA_OPTIONS)
     order["pizzas"] = []
     for i in range(0, order["quantity"]):
-        #put in pizza menu and length of menu
-        pizza_num = int(get_input(menu_response[0], "Select topping", "Menu", menu_response[1]))
+        #put in pizza menu and length of menu, shows what number pizza is on.
+        pizza_num = int(get_input(menu_response[0], f"Select topping ({i+1}/{order['quantity']})", "Menu", menu_response[1]))
+        #add appropriate pizza to pizzas list in order dictionary
         order["pizzas"].append(PIZZA_OPTIONS[pizza_num-1])
     receipt = generate_receipt(order, DELIVERY_PRICE)
     get_input(receipt, "Input [Q]uit to quit or anything else to cancel/restart", "Text")
