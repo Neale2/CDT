@@ -18,18 +18,32 @@ PIZZA_OPTIONS = [
 class ProgramReset(Exception):
     pass
 
+'''
+Function to quit program when called
+'''
 def quit_program():
     sys.exit()
 
+'''
+Function to raise ProgramReset error when called. This is caught, restarting the program
+'''
 def reset_order():
     raise ProgramReset()
 
+'''
+Prints a value, with the option to extend later to add styling to printing. Purpose is for easy future expandability.
+'''
 def custom_print(value):
     print(value)
 
+'''
+Clears screen when called
+'''
 def clear_screen():
+    #If user is in IDLE, print bunch of line breaks
     if 'idlelib.run' in sys.modules:
         print("\n"*49)
+    #else clear screen
     else:
        os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -124,6 +138,7 @@ def get_input(context, prompt, value_type, size=None):
 
 '''
 Function to generate user reciept
+Function to generate user receipt
 Order is dictionary of all the user's orders
 '''
 def generate_receipt(order):
@@ -176,6 +191,7 @@ def main():
     order["delivery"] = get_input("New Order", "Is delivery required?", "Yes/No").lower()[0]
     #formats name to be in title fomat
     order["name"] = get_input("", "Client Name", "Text").title()
+    #if for delivery:
     if order["delivery"] == "y":
         order["address"] = get_input("", "Client Address", "Text")
         order["phone"] = get_input("", "Client phone number", "Text")
