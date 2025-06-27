@@ -128,6 +128,7 @@ Function to generate user receipt
 Order is dictionary of all the user's orders
 '''
 def generate_receipt(order):
+def generate_receipt(order, delivery_price):
     #building string to display reciept
     receipt = "      ===ORDER RECEIPT===      "
     receipt = receipt + f"\nCustomer Name: {order['name']}"
@@ -135,7 +136,7 @@ def generate_receipt(order):
     if order["delivery"] == "y":
         receipt = receipt + f"\nPhone: {order['phone']}\nAddress: {order['address']}\nDelivery"
     else:
-        reciept = receipt + "\nPhone: N/A\nAddress: N/A\nNo Delivery"
+        receipt = receipt + "\nPhone: N/A\nAddress: N/A\nNo Delivery"
     receipt = receipt + "\n-------------------------------\nItem                      Price\n"
     price = 0
     for pizza in order["pizzas"]:
@@ -145,8 +146,8 @@ def generate_receipt(order):
     receipt = receipt + "\n"*3 + dotter("Subtotal", f"${price}", 31)
     #is order for delivery?
     if order["delivery"]:
-        price = price + 3
-        receipt = receipt + "\n" + dotter("Delivery Fee", "$3.0", 31)
+        price = price + delivery_price
+        receipt = receipt + "\n" + dotter("Delivery Fee", f"${delivery_price}.0", 31)
     else:
         receipt = receipt + "\n" + dotter("Delivery Fee", "N/A", 31)
     receipt = receipt +  "\n" * 3 + dotter("TOTAL", f"${price}", 31)
@@ -205,8 +206,8 @@ def main():
         #put in pizza menu and length of menu
         pizza_num = int(get_input(menu_response[0], "Select topping", "Menu", menu_response[1]))
         order["pizzas"].append(PIZZA_OPTIONS[pizza_num-1])
-    receipt = generate_receipt(order)
-    get_input(receipt, "Input Q to quit or anything else to cancel/restart", "Text")
+    receipt = generate_receipt(order, DELIVERY_PRICE)
+    get_input(receipt, "Input [Q]uit to quit or anything else to cancel/restart", "Text")
     
 #main loop - if ProgramReset raised, program is reset
 while True:
