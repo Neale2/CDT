@@ -1,6 +1,7 @@
 import os
 import sys
 
+
 class ProgramReset(Exception):
     pass
 
@@ -123,11 +124,9 @@ def get_input(context, prompt, value_type, size=None):
     return user_response
 
 '''
-Function to generate user reciept
 Function to generate user receipt
 Order is dictionary of all the user's orders
 '''
-def generate_receipt(order):
 def generate_receipt(order, delivery_price):
     #building string to display reciept
     receipt = "      ===ORDER RECEIPT===      "
@@ -196,7 +195,8 @@ def main():
     order["name"] = get_input("", "Client Name", "Text").title()
     #if for delivery:
     if order["delivery"] == "y":
-        order["address"] = get_input("", "Client Address", "Text")
+        #formats name to be in title fomat
+        order["address"] = get_input("", "Client Address", "Text").title()
         order["phone"] = get_input("", "Client phone number", "Text")
     #save as integer
     order["quantity"] = int(get_input("", "Pizza Quantity", "Number", 5))
