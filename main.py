@@ -144,7 +144,7 @@ def generate_receipt(order, delivery_price):
         price = price + pizza[1]
     receipt = receipt + "\n"*3 + dotter("Subtotal", f"${price}", 31)
     #is order for delivery?
-    if order["delivery"]:
+    if order["delivery"] == "y":
         price = price + delivery_price
         receipt = receipt + "\n" + dotter("Delivery Fee", f"${delivery_price}.0", 31)
     else:
