@@ -175,16 +175,16 @@ def main():
     PIZZA_OPTIONS = [
         ("BBQ Chicken", 10.5),
         ("Beef & Onion", 10.5),
-        ("Blue Cheese & Pear", 15.5),
+        ("Blue Cheese & Pear", 10.5),
         ("Hawaiian", 10.5),
-        ("Lamb & Kumara", 15.5),
+        ("Lamb & Kumara", 10.5),
         ("Margherita", 10.5),
         ("Meatlovers", 10.5),
         ("Mushroom & Truffle Oil", 15.5),
-        ("Pepperoni", 10.5),
+        ("Pepperoni", 15.5),
         ("Pesto Chicken & Brie", 15.5),
         ("Smoked Salmon", 15.5),
-        ("Vegetarian", 10.5)
+        ("Vegetarian", 15.5)
     ]
     DELIVERY_PRICE = 3
 
