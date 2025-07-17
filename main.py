@@ -28,11 +28,11 @@ Clears screen when called
 '''
 def clear_screen():
     #If user is in IDLE, print bunch of line breaks
-    if 'idlelib.run' in sys.modules:
-        print("\n"*49)
+    if "idlelib.run" in sys.modules:
+        print("\n" * 49)
     #else clear screen
     else:
-       os.system('cls' if os.name == 'nt' else 'clear')
+       os.system("cls" if os.name == "nt" else "clear")
 
        
 '''
@@ -92,7 +92,7 @@ def get_input(context, prompt, value_type, size=None):
     custom_print(context)
     #validation loop
     while True:
-        custom_print('[Q] Quit    [C] Cancel')
+        custom_print("[Q] Quit    [C] Cancel")
         #displays useful info depending on type
         if value_type == "Menu" or value_type == "Number":
             info_string = f"1 - {size}"
@@ -130,10 +130,10 @@ Order is dictionary of all the user's orders
 def generate_receipt(order, delivery_price):
     #building string to display reciept
     receipt = "      ===ORDER RECEIPT===      "
-    receipt = receipt + f"\nCustomer Name: {order['name']}"
+    receipt = receipt + f"\nCustomer Name: {order["name"]}"
     #is order for delivery?
     if order["delivery"] == "y":
-        receipt = receipt + f"\nPhone: {order['phone']}\nAddress: {order['address']}\nDelivery"
+        receipt = receipt + f"\nPhone: {order["phone"]}\nAddress: {order["address"]}\nDelivery"
     else:
         receipt = receipt + "\nPhone: N/A\nAddress: N/A\nNo Delivery"
     receipt = receipt + "\n-------------------------------\nItem                      Price\n"
@@ -142,7 +142,7 @@ def generate_receipt(order, delivery_price):
         #adding nice dots to items
         receipt = receipt + dotter(pizza[0], f"${pizza[1]}", 31)
         price = price + pizza[1]
-    receipt = receipt + "\n"*3 + dotter("Subtotal", f"${price}", 31)
+    receipt = receipt + "\n" * 3 + dotter("Subtotal", f"${price}", 31)
     #is order for delivery?
     if order["delivery"] == "y":
         price = price + delivery_price
@@ -204,7 +204,7 @@ def main():
     order["pizzas"] = []
     for i in range(0, order["quantity"]):
         #put in pizza menu and length of menu, shows what number pizza is on.
-        pizza_num = int(get_input(menu_response[0], f"Select topping ({i+1}/{order['quantity']})", "Menu", menu_response[1]))
+        pizza_num = int(get_input(menu_response[0], f"Select topping ({i+1}/{order["quantity"]})", "Menu", menu_response[1]))
         #add appropriate pizza to pizzas list in order dictionary
         order["pizzas"].append(PIZZA_OPTIONS[pizza_num-1])
     receipt = generate_receipt(order, DELIVERY_PRICE)
