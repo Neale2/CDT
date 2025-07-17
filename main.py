@@ -43,7 +43,7 @@ Start item is the item on the left of the dots, end_item is the item on the righ
 def dotter(start_item, end_item, desired_length):
     dot_quantity = desired_length - len(str(start_item)) - len(str(end_item))
     #puts correct amount of dots between string
-    return "\n" + str(start_item) + "."*dot_quantity + str(end_item)
+    return "\n" + str(start_item) + "." * dot_quantity + str(end_item)
 
 
 '''
@@ -107,11 +107,11 @@ def get_input(context, prompt, value_type, size=None):
         if not validation_response == None:
             if validation_response == "q" or validation_response == "quit":
                 quit_program()
-                #end program for now
+                #end function for now
                 return None
             elif validation_response == "c" or validation_response == "cancel":
                 reset_order()
-                #end program for now
+                #end function for now
                 return None
             else:
                 clear_screen()
@@ -149,7 +149,7 @@ def generate_receipt(order, delivery_price):
         receipt = receipt + "\n" + dotter("Delivery Fee", f"${delivery_price}.0", 31)
     else:
         receipt = receipt + "\n" + dotter("Delivery Fee", "N/A", 31)
-    receipt = receipt +  "\n" * 3 + dotter("TOTAL", f"${price}", 31)
+    receipt = receipt + "\n" * 3 + dotter("TOTAL", f"${price}", 31)
     receipt = receipt +  "\n-------------------------------\n     THANKS FOR YOUR ORDER     \n-------------------------------"
 
     return receipt
@@ -164,7 +164,7 @@ def generate_menu(options):
     counter = 0
     for pizza in options:
         counter = counter + 1
-        menu = menu +  f"{counter}.  {pizza[0]}  - ${pizza[1]}\n"
+        menu = menu + f"{counter}.  {pizza[0]}  - ${pizza[1]}\n"
     return (menu, counter)
 
 
@@ -204,9 +204,9 @@ def main():
     order["pizzas"] = []
     for i in range(0, order["quantity"]):
         #put in pizza menu and length of menu, shows what number pizza is on.
-        pizza_num = int(get_input(menu_response[0], f"Select topping ({i+1}/{order["quantity"]})", "Menu", menu_response[1]))
+        pizza_num = int(get_input(menu_response[0], f"Select topping ({i + 1}/{order["quantity"]})", "Menu", menu_response[1]))
         #add appropriate pizza to pizzas list in order dictionary
-        order["pizzas"].append(PIZZA_OPTIONS[pizza_num-1])
+        order["pizzas"].append(PIZZA_OPTIONS[pizza_num - 1])
     receipt = generate_receipt(order, DELIVERY_PRICE)
     get_input(receipt, "Input [Q]uit to quit, [C] to cancel, or anything else to restart", "Text")
     
